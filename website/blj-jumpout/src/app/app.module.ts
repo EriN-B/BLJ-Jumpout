@@ -32,6 +32,7 @@ import {environment} from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { ModalComponent } from './pages/modal/modal.component';
 
 
 
@@ -41,7 +42,8 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
     LandingComponent,
     BlogComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,14 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
     MatGridListModule,
     MatCardModule
   ],
+  entryComponents: [
+    ModalComponent
+  ],
+  exports: [
+    ModalComponent
+  ],
   providers: [
+    ModalComponent
   ],
   bootstrap: [AppComponent]
 })

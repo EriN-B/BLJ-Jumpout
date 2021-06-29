@@ -8,17 +8,16 @@ import {BlogPost} from "../types/BlogPost";
 })
 export class BlogService {
 
+  post: BlogPost;
+
   constructor(
-    private afs: AngularFirestore,
-    private blogPost: BlogPost
   ) { }
 
-  addBlogPost(){
-    return this.afs.collection('Blogs').add({
-      title:"",
-      date: "",
-      message: "",
-      likes: 10
-    })
-  }
+  safeBlogPost(post){
+    this.post = post;
+ }
+
+ getSafedBlogPost(){
+    return this.post;
+ }
 }

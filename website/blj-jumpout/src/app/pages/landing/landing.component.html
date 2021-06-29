@@ -47,7 +47,7 @@
   </h2>
   <div class="columns latest-blogs">
     <div class="column" *ngFor="let item of items | async | slice:0:3;">
-      <div class="card" >
+      <div class="card" (click)="test(item)">
         <div class="card-content">
           <div class="content">
             <p class="title">
@@ -57,13 +57,15 @@
               {{item?.date}}
             </p>
             <p>
-              {{item?.message}}
+              {{item?.message | slice: 0:300}} ...
             </p>
+            <button mat-button (click)="openDialog()">Open dialog</button>
           </div>
         </div>
       </div>
     </div>
   </div>
   <button class="button is-link" (click)="router.navigateByUrl('/blog')">More Posts</button>
+  <button class="button is-link" (click)="addBlogPost()"></button>
 </section>
 
