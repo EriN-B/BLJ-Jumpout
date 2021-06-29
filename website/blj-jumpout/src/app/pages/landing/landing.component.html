@@ -1,1 +1,71 @@
-<p>landing works!</p>
+<section class="hero is-info is-large">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <h1 class="title">Wetterballon</h1>
+          </a>
+        </div>
+        <div id="navbarMenuHeroB" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item">
+              Home
+            </a>
+            <a class="navbar-item">
+              Blog
+            </a>
+            <a class="navbar-item">
+              About
+            </a>
+            <span class="navbar-item">
+              <a class="button is-info is-inverted" (click)="router.navigateByUrl('/login')">
+                <span>Login</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <p class="title">
+        Wetterballon
+      </p>
+      <p class="subtitle">
+        Abschlussprojekt BLJ 2021
+      </p>
+    </div>
+  </div>
+</section>
+<section class="section is-medium">
+  <h1 class="title">Latest Posts</h1>
+  <h2 class="subtitle">
+    Here are the  <strong>latest</strong> posts from our Blog.
+  </h2>
+  <div class="columns latest-blogs">
+    <div class="column" *ngFor="let item of items | async | slice:0:3;">
+      <div class="card" >
+        <div class="card-content">
+          <div class="content">
+            <p class="title">
+              {{item?.title}}
+            </p>
+            <p class="subtitle">
+              {{item?.date}}
+            </p>
+            <p>
+              {{item?.message}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <button class="button is-link">More Posts</button>
+    </div>
+  </div>
+</section>
+
