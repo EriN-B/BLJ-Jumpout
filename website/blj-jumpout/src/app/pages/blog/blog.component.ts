@@ -33,7 +33,7 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     // @ts-ignore
-    this.items = this.afs.collection('Blogs').valueChanges();
+    this.items = this.blogService.getAllBlogEntries();
   }
 
   openDialog() {

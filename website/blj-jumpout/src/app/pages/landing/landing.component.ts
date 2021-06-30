@@ -25,7 +25,7 @@ export class LandingComponent implements OnInit {
 
   loggedIn: boolean = false;
 
-  items: Observable<BlogPost[]>
+    items: Observable<BlogPost[]>
 
   constructor(
     private router: Router,
@@ -36,21 +36,22 @@ export class LandingComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     // @ts-ignore
-    this.items = this.afs.collection('Blogs').valueChanges();
+    this.items = this.blogService.getAllBlogEntries();
     this.authService.User.subscribe(user =>{
       if(user !== null){
         this.loggedIn = true;
       }else{
         this.loggedIn = false;
       }
-    })
+    });
+
+    await this.blogService.getAllBlogEntries();
   }
 
   openDialog() {
     const dialogRef = this.matDialog.open(ModalComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });

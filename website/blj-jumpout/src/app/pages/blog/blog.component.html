@@ -40,8 +40,9 @@
     </p>
   </div>
 </section>
-<div class="columns latest-blogs">
-  <div class="column" *ngFor="let item of items | async | slice:0:3;">
+<div class="box">
+<div class="columns is-multiline latest-blogs" >
+  <div class="column is-one-third" *ngFor="let item of items | async">
     <div class="card" (click)="test(item)">
       <div class="card-content">
         <div class="content">
@@ -67,4 +68,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

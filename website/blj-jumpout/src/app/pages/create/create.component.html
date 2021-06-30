@@ -1,1 +1,67 @@
-<p>create works!</p>
+<section class="hero is-link is-fullheight">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container is-link">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <h1 class="title">Wetterballon</h1>
+          </a>
+        </div>
+        <div id="navbarMenuHeroB" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item">
+              Home
+            </a>
+            <a class="navbar-item">
+              Blog
+            </a>
+            <a class="navbar-item">
+              About
+            </a>
+            <span class="navbar-item">
+              <a class="button is-info is-inverted" (click)="router.navigateByUrl('/login')">
+                <span>Login</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-6-tablet is-6-desktop is-6-widescreen">
+          <div action="" class="box">
+            <div class="field">
+              <label for="" class="label">Titel</label>
+              <div class="control">
+                <input [(ngModel)]="title" type="text" class="input" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="" class="label">Text</label>
+              <div class="control">
+                <textarea [(ngModel)]="text" type="text" class="input" required> </textarea>
+              </div>
+            </div>
+            <div class="field">
+              <button class="button is-success" (click)="safeBlogPost()">
+                <fa-icon [icon]="faCheck" class="icon is-small is-left">
+
+                </fa-icon>
+                <span>Save</span>
+              </button>
+              <button class="button is-danger button-cancel" (click)="router.navigateByUrl('/landing')">
+                <fa-icon [icon]="faTimes" class="icon is-small is-left">
+
+                </fa-icon>
+                <span>Cancel</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
