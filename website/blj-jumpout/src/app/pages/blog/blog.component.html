@@ -1,36 +1,4 @@
-<section class="hero is-link                                  ">
-  <div class="hero-head">
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            <h1 class="title">Wetterballon</h1>
-          </a>
-        </div>
-        <div id="navbarMenuHeroB" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item">
-              Home
-            </a>
-            <a class="navbar-item">
-              Blog
-            </a>
-            <a class="navbar-item">
-              About
-            </a>
-            <span class="navbar-item">
-              <a *ngIf="authService.login" class="button is-info is-inverted" (click)="router.navigateByUrl('blog/create')">
-                <span>Create</span>
-              </a>
-              <a *ngIf="!authService.login" class="button is-info is-inverted" (click)="router.navigateByUrl('/login')">
-                <span>Login</span>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>
+<section class="hero is-link">
   <div class="hero-body has-text-centered">
     <p class="title">
      Blog

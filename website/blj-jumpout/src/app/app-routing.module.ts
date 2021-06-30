@@ -6,6 +6,7 @@ import {BlogComponent} from "./pages/blog/blog.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {CreateComponent} from "./pages/create/create.component";
 import {AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
+import {NavbarComponent} from "./pages/navbar/navbar.component";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/landing']);
 const redirectLoggedInToRoot = () => redirectLoggedInTo(['landing']);
@@ -32,7 +33,11 @@ const routes: Routes = [
   },
   {
     path: '', component: LandingComponent
+  },
+  {
+    path: 'navbar', component: NavbarComponent
   }
+
 ];
 
 @NgModule({

@@ -37,6 +37,7 @@ import { ModalComponent } from './pages/modal/modal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateComponent } from './pages/create/create.component';
 import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
+import { NavbarComponent } from './pages/navbar/navbar.component';
 
 
 
@@ -48,7 +49,8 @@ import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
     LoginComponent,
     RegisterComponent,
     ModalComponent,
-    CreateComponent
+    CreateComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

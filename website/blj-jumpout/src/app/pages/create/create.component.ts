@@ -36,6 +36,7 @@ export class CreateComponent implements OnInit {
       this.post.title = this.title;
       this.post.message = this.text;
       this.blogService.safeBlogPost(this.post);
+      this.router.navigateByUrl('/blog')
     }
   }
 

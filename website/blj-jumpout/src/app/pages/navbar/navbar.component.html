@@ -1,0 +1,39 @@
+<section class="hero is-link is-large">
+<div class="hero-head">
+  <nav class="navbar is-link">
+    <div class="container is-link">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <h1 class="title">Wetterballon</h1>
+        </a>
+      </div>
+      <div id="navbarMenuHeroB" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item">
+            Home
+          </a>
+          <a class="navbar-item" (click)="router.navigateByUrl('/blog')">
+            Blog
+          </a>
+          <a class="navbar-item" href="#about">
+            About
+          </a>
+          <span class="navbar-item">
+              <a *ngIf="loggedIn" class="button is-info is-inverted" (click)="router.navigateByUrl('blog/create')">
+                <span>Create</span>
+              </a>
+              <a *ngIf="!loggedIn" class="button is-info is-inverted" (click)="router.navigateByUrl('login')">
+                <span>Login</span>
+              </a>
+            </span>
+          <span *ngIf="loggedIn" class="navbar-item">
+                <a class="button is-danger" (click)="this.authService.logout()">
+                <span>Logout</span>
+              </a>
+            </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+</section>

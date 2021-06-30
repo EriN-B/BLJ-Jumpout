@@ -30,12 +30,6 @@ export class BlogService {
       message: post.message,
       likes: 1
     });
-
-    this.router.navigateByUrl('blogs')
- }
-
- getSafedBlogPost(){
-    return this.post;
  }
 
  addLike(){

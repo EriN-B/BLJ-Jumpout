@@ -12,20 +12,17 @@ import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from "../../services/auth.service";
 
+
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 
   faHeart = faHeart;
-  faShare = faShare;
-  faRecordVinyl = faRecordVinyl;
 
   loggedIn: boolean = false;
-
-    items: Observable<BlogPost[]>
 
   constructor(
     private router: Router,
@@ -33,32 +30,9 @@ export class LandingComponent implements OnInit {
     private matDialog: MatDialog,
     private blogService: BlogService,
     private authService: AuthService
-  ) {
+  ) { }
+
+  ngOnInit() {
   }
 
-  async ngOnInit() {
-    // @ts-ignore
-    this.items = this.blogService.getAllBlogEntries();
-    await this.blogService.getAllBlogEntries();
-  }
-
-  openDialog() {
-    const dialogRef = this.matDialog.open(ModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  addBlogPost(){
-    this.afs.collection('Blogs').add({
-      title: "test 1",
-      date: "12.12.12",
-      message: "qweqewqwe",
-      likes: 0
-    })
-  }
-
-  test(item){
-   this.blogService.safeBlogPost(item);
-  }
 }

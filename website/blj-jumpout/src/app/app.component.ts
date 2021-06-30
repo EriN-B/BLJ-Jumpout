@@ -1,5 +1,16 @@
 import { Component } from '@angular/core';
 import { MenuItems } from "./types/menu-items";
+import { Router } from "@angular/router";
+import {AngularFirestore} from "@angular/fire/firestore";
+import {Observable} from "rxjs";
+import {AngularFireList} from "@angular/fire/database";
+import {BlogPost} from "./types/BlogPost";
+import {MatDialog} from '@angular/material/dialog';
+import {BlogService} from "./services/blog.service";
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
+import {AuthService} from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +18,26 @@ import { MenuItems } from "./types/menu-items";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(
+    private router: Router,
+    private afs: AngularFirestore,
+    private matDialog: MatDialog,
+    private blogService: BlogService,
+    private authService: AuthService
+  ) {
+    this.authService.User.subscribe(user =>{
+      if(user !== null){
+        this.loggedIn = true;
+      }else{
+        this.loggedIn = false;
+      }
+    });
+  }
+
+  faHeart = faHeart;
+
+  loggedIn: boolean = false;
 
   title = 'blj-jumpout';
 
