@@ -7,6 +7,10 @@ import {BlogPost} from "../../types/BlogPost";
 import {MatDialog} from '@angular/material/dialog';
 import {ModalComponent} from "../modal/modal.component";
 import {BlogService} from "../../services/blog.service";
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-landing',
@@ -15,6 +19,11 @@ import {BlogService} from "../../services/blog.service";
 })
 export class LandingComponent implements OnInit {
 
+  faHeart = faHeart;
+  faShare = faShare;
+  faRecordVinyl = faRecordVinyl;
+
+  loggedIn: boolean = false;
 
   items: Observable<BlogPost[]>
 
@@ -22,13 +31,21 @@ export class LandingComponent implements OnInit {
     private router: Router,
     private afs: AngularFirestore,
     private matDialog: MatDialog,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private authService: AuthService
   ) {
   }
 
   ngOnInit() {
     // @ts-ignore
     this.items = this.afs.collection('Blogs').valueChanges();
+    this.authService.User.subscribe(user =>{
+      if(user !== null){
+        this.loggedIn = true;
+      }else{
+        this.loggedIn = false;
+      }
+    })
   }
 
   openDialog() {

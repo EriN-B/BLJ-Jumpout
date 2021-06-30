@@ -34,6 +34,10 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { ModalComponent } from './pages/modal/modal.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CreateComponent } from './pages/create/create.component';
+import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
+
 
 
 @NgModule({
@@ -43,7 +47,8 @@ import { ModalComponent } from './pages/modal/modal.component';
     BlogComponent,
     LoginComponent,
     RegisterComponent,
-    ModalComponent
+    ModalComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,8 @@ import { ModalComponent } from './pages/modal/modal.component';
     MatTableModule,
     MatDialogModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    FontAwesomeModule
   ],
   entryComponents: [
     ModalComponent
@@ -77,7 +83,8 @@ import { ModalComponent } from './pages/modal/modal.component';
     ModalComponent
   ],
   providers: [
-    ModalComponent
+    ModalComponent,
+    AngularFireAuthGuard
   ],
   bootstrap: [AppComponent]
 })

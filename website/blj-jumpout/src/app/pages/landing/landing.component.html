@@ -1,7 +1,7 @@
-<section class="hero is-info is-large">
+<section class="hero is-link is-large">
   <div class="hero-head">
-    <nav class="navbar">
-      <div class="container">
+    <nav class="navbar is-link">
+      <div class="container is-link">
         <div class="navbar-brand">
           <a class="navbar-item">
             <h1 class="title">Wetterballon</h1>
@@ -12,15 +12,23 @@
             <a class="navbar-item">
               Home
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" (click)="router.navigateByUrl('/blog')">
               Blog
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" href="#about">
               About
             </a>
             <span class="navbar-item">
-              <a class="button is-info is-inverted" (click)="router.navigateByUrl('/login')">
+              <a *ngIf="loggedIn" class="button is-info is-inverted" (click)="router.navigateByUrl('blog/create')">
+                <span>Create</span>
+              </a>
+              <a *ngIf="!loggedIn" class="button is-info is-inverted" (click)="router.navigateByUrl('login')">
                 <span>Login</span>
+              </a>
+            </span>
+            <span *ngIf="loggedIn" class="navbar-item">
+                <a class="button is-danger" (click)="this.authService.logout()">
+                <span>Logout</span>
               </a>
             </span>
           </div>
@@ -28,7 +36,6 @@
       </div>
     </nav>
   </div>
-
   <div class="hero-body">
     <div class="container has-text-centered">
       <p class="title">
@@ -37,35 +44,65 @@
       <p class="subtitle">
         Abschlussprojekt BLJ 2021
       </p>
+      <button class="button is-danger is-rounded">
+   <fa-icon [icon]="faRecordVinyl" class="icon is-small is-left"> </fa-icon>
+        <span>Participate Live</span>
+      </button>
+
     </div>
   </div>
 </section>
 <section class="section is-medium">
-  <h1 class="title">Latest Posts</h1>
-  <h2 class="subtitle">
-    Here are the  <strong>latest</strong> posts from our Blog.
-  </h2>
-  <div class="columns latest-blogs">
-    <div class="column" *ngFor="let item of items | async | slice:0:3;">
-      <div class="card" (click)="test(item)">
-        <div class="card-content">
-          <div class="content">
-            <p class="title">
-              {{item?.title}}
-            </p>
-            <p class="subtitle">
-              {{item?.date}}
-            </p>
-            <p>
-              {{item?.message | slice: 0:300}} ...
-            </p>
-            <button mat-button (click)="openDialog()">Open dialog</button>
+    <h1 class="title">Latest Posts</h1>
+    <h2 class="subtitle">
+      Here are the  <strong>latest</strong> posts from our Blog.
+    </h2>
+    <div class="columns latest-blogs">
+      <div class="column" *ngFor="let item of items | async | slice:0:3;">
+        <div class="card" (click)="test(item)">
+          <div class="card-content">
+            <div class="content">
+              <p class="title">
+                {{item?.title}}
+              </p>
+              <p class="subtitle">
+                {{item?.date}}
+              </p>
+              <p>
+                {{item?.message | slice: 0:300}} ...
+              </p>
+              <button mat-button class="button is-link" (click)="openDialog()">Details</button>
+              <button class="like">
+                <fa-icon [icon]="faHeart"></fa-icon>
+                Like
+              </button>
+              <button class="like">
+                <fa-icon [icon]="faShare"></fa-icon>
+                Share
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  <div class="more-posts">
+    <button class="button is-link" (click)="router.navigateByUrl('/blog')">More Posts</button>
   </div>
-  <button class="button is-link" (click)="router.navigateByUrl('/blog')">More Posts</button>
-  <button class="button is-link" (click)="addBlogPost()"></button>
+  <div class="about content" id="about">
+    <p class="title">
+      About the Project
+    </p>
+    <div class="box">
+      <h2>Projectidea</h2>
+      <p>Das Projekt Sputnik 2 ist ein Projekt, welches uns viel bedeutet. Es ist unser letztes Projekt, welches wir in der Super zeit im Basislehrjahr zusammen bewältigt werden. Die Idee ist es, dass wir ein sogenannten Wetterballon von Grund aus aufbauen und ihn dann steigen lassen. Während dem Flug sammeln mehrere verschiedene Sensoren Daten. Der Flug wird auch von Zwei Kameras aufgenommen und am Schluss zu einem Film zusammengeschnitten. Zusätzlich wird der Ballon per GPS die ganze Zeit über verfolgt. Das Ziel beim ganzen Projekt ist es, dass der Wetterballon in die Stratosphäre gelangt und wir ihm beim Landen wiederfinden per GPS-Signal. Zusätzlich sollen die gesammelten Daten ausgewertet, dokumentiert und auf der Webseite dargestellt werden.</p>
+    </div>
+  </div>
 </section>
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      Made with <strong><3</strong> by <a href="https://instagram.com/bachmannerin">Erin</a> and <a href="https://instagram.com/bachmannerin">Joshua</a>
+    </p>
+  </div>
+</footer>
 

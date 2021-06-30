@@ -1,1 +1,74 @@
-<p>register works!</p>
+<section class="hero is-link is-fullheight">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container is-link">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <h1 class="title">Wetterballon</h1>
+          </a>
+        </div>
+        <div id="navbarMenuHeroB" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item">
+              Home
+            </a>
+            <a class="navbar-item">
+              Blog
+            </a>
+            <a class="navbar-item">
+              About
+            </a>
+            <span class="navbar-item">
+              <a class="button is-info is-inverted" (click)="router.navigateByUrl('/login')">
+                <span>Login</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+          <div action="" class="box">
+            <div class="field">
+              <label for="" class="label">Email</label>
+              <div class="control has-icons-left">
+                <fa-icon [icon]="faPersonBooth" class="icon is-small is-left">
+
+                </fa-icon>
+                <input [(ngModel)]="username" type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control has-icons-left">
+                <input [(ngModel)]="password" type="password" placeholder="*******" class="input" required>
+                <fa-icon [icon]="faPassport" class="icon is-small is-left">
+
+                </fa-icon>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Repeat Password</label>
+              <div class="control has-icons-left">
+                <input [(ngModel)]="rpassword" type="password" placeholder="*******" class="input" required>
+                <fa-icon [icon]="faPassport" class="icon is-small is-left">
+
+                </fa-icon>
+              </div>
+            </div>
+            <div class="field">
+              <button class="button is-link" (click)="register()">
+                Register
+              </button>
+              <p> You have a account?  <a href="/login">Login</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

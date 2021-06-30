@@ -1,1 +1,70 @@
-<p>blog works!</p>
+<section class="hero is-link                                  ">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <h1 class="title">Wetterballon</h1>
+          </a>
+        </div>
+        <div id="navbarMenuHeroB" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item">
+              Home
+            </a>
+            <a class="navbar-item">
+              Blog
+            </a>
+            <a class="navbar-item">
+              About
+            </a>
+            <span class="navbar-item">
+              <a *ngIf="authService.login" class="button is-info is-inverted" (click)="router.navigateByUrl('blog/create')">
+                <span>Create</span>
+              </a>
+              <a *ngIf="!authService.login" class="button is-info is-inverted" (click)="router.navigateByUrl('/login')">
+                <span>Login</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="hero-body has-text-centered">
+    <p class="title">
+     Blog
+    </p>
+    <p class="subtitle">
+      Daily Updates of our Project
+    </p>
+  </div>
+</section>
+<div class="columns latest-blogs">
+  <div class="column" *ngFor="let item of items | async | slice:0:3;">
+    <div class="card" (click)="test(item)">
+      <div class="card-content">
+        <div class="content">
+          <p class="title">
+            {{item?.title}}
+          </p>
+          <p class="subtitle">
+            {{item?.date}}
+          </p>
+          <p>
+            {{item?.message | slice: 0:300}} ...
+          </p>
+          <button mat-button class="button is-link" (click)="openDialog()">Details</button>
+          <button class="like">
+            <fa-icon [icon]="faHeart"></fa-icon>
+            Like
+          </button>
+          <button class="like">
+            <fa-icon [icon]="faShare"></fa-icon>
+            Share
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
