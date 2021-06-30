@@ -10,6 +10,7 @@ import {BlogService} from "../../services/blog.service";
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from "../../services/auth.service";
+import {ModalService} from "../../services/modal.service";
 
 @Component({
   selector: 'app-blog',
@@ -28,7 +29,8 @@ export class BlogComponent implements OnInit {
     private afs: AngularFirestore,
     private matDialog: MatDialog,
     private blogService: BlogService,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit() {
@@ -36,25 +38,11 @@ export class BlogComponent implements OnInit {
     this.items = this.blogService.getAllBlogEntries();
   }
 
-  openDialog() {
+  openDialog(item) {
+    this.modalService.setBlog(item);
     const dialogRef = this.matDialog.open(ModalComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
-
-  addBlogPost(){
-    this.afs.collection('Blogs').add({
-      title: "test 1",
-      date: "12.12.12",
-      message: "qweqewqwe",
-      likes: 0
-    })
-  }
-
-  test(item){
-    this.blogService.safeBlogPost(item);
-  }
-
 }

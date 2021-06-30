@@ -3,14 +3,13 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import {BlogPost} from "../types/BlogPost";
 import {Router} from "@angular/router";
 import {readPackageTree} from "@angular/cli/utilities/package-tree";
+import {Observable} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
-
-  post: BlogPost;
 
   constructor(
     private afs: AngularFirestore,

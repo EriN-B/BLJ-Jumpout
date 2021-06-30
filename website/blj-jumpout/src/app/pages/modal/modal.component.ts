@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {BlogService} from "../../services/blog.service";
 import {BlogPost} from "../../types/BlogPost";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {ModalService} from "../../services/modal.service";
 
 
 @Component({
@@ -10,14 +13,16 @@ import {BlogPost} from "../../types/BlogPost";
 })
 export class ModalComponent implements OnInit {
 
-  post: BlogPost;
+  blog: BlogPost;
 
   constructor(
-    private blogService: BlogService
+    private blogService: BlogService,
+    private route: ActivatedRoute,
+    private modalService: ModalService
   ) { }
 
   ngOnInit() {
-    this.post = this.blogService.getSafedBlogPost();
+    this.blog = this.modalService.getBlog();
   }
 
 }
