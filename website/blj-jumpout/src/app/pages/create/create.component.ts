@@ -13,7 +13,7 @@ import {count} from "rxjs/operators";
 })
 export class CreateComponent implements OnInit {
 
-  post: BlogPost = <BlogPost>{};
+  post: BlogPost;
 
   faCheck = faCheck;
   faTimes = faTimes;
@@ -21,6 +21,8 @@ export class CreateComponent implements OnInit {
   text: string;
 
   title: string;
+
+  file: File;
 
   constructor(
     private router: Router,
@@ -30,14 +32,25 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  safeBlogPost(){
+  safeBlogPost() {
+    const reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    reader.onload = () => {
+      console.log(reader.result);
+    };
     // @ts-ignore
-    if(this.title && this.text.length >= 300){
+    if (this.title && this.text.length >= 300 && this.file) {
       this.post.title = this.title;
       this.post.message = this.text;
-      this.blogService.safeBlogPost(this.post);
-      this.router.navigateByUrl('/blog')
+      this.blogService.safeBlogPost(this.post).then(async () => {
+        await this.router.navigateByUrl('/blog');
+      });
     }
+  }
+
+
+  deleteImg() {
+    this.file = undefined;
   }
 
 }

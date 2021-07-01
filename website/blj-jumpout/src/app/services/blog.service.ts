@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from "@angular/fire/firestore";
-import {BlogPost} from "../types/BlogPost";
-import {Router} from "@angular/router";
-import {readPackageTree} from "@angular/cli/utilities/package-tree";
-import {Observable} from "rxjs";
+import { AngularFirestore } from '@angular/fire/firestore';
+import {BlogPost} from '../types/BlogPost';
+import {Router} from '@angular/router';
+import {readPackageTree} from '@angular/cli/utilities/package-tree';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -16,23 +16,23 @@ export class BlogService {
     private router: Router
   ) { }
 
-  safeBlogPost(post){
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = today.getFullYear();
+  safeBlogPost(post) {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const yyyy = today.getFullYear();
 
-    let dateToday = dd + '.' + mm + '.' + yyyy;
+    const dateToday = dd + '.' + mm + '.' + yyyy;
 
     return this.afs.collection('Blogs').add({
       title: post.title,
       date: dateToday.toString(),
       message: post.message,
-      likes: 1
+      likes: 0
     });
  }
 
- addLike(){
+ addLike() {
 
  }
 
@@ -40,15 +40,19 @@ export class BlogService {
     const res = [];
     await this.afs.collection('Blogs').get().subscribe((snapshot) => {
         snapshot.docs.forEach((doc) => {
-          const temp:BlogPost = new BlogPost(
+          const temp: BlogPost = new BlogPost(
             doc.id,
+            // @ts-ignore
             doc.data().title,
+            // @ts-ignore
             doc.data().date,
+            // @ts-ignore
             doc.data().message,
+            // @ts-ignore
             doc.data().likes,
+            // @ts-ignore
             doc.data().img
-            )
-
+            );
           res.push(temp);
         });
       }

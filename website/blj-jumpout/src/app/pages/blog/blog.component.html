@@ -9,32 +9,8 @@
   </div>
 </section>
 <div class="box">
-<div class="columns is-multiline latest-blogs" >
-  <div class="column is-one-third" *ngFor="let item of items | async">
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <p class="title">
-            {{item?.title}}
-          </p>
-          <p class="subtitle">
-            {{item?.date}}
-          </p>
-          <p>
-            {{item?.message | slice: 0:300}} ...
-          </p>
-          <button mat-button class="button is-link" (click)="openDialog(item)">Details</button>
-          <button class="like">
-            <fa-icon [icon]="faHeart"></fa-icon>
-            Like
-          </button>
-          <button class="like">
-            <fa-icon [icon]="faShare"></fa-icon>
-            Share
-          </button>
-        </div>
-      </div>
-    </div>
+  <div class="columns is-multiline latest-blogs" >
+    <div class="column is-one-third" *ngFor="let item of items | async">
+      <app-blog-card [blogEntry]="item"></app-blog-card>
   </div>
-</div>
 </div>

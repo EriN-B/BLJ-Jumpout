@@ -21,32 +21,8 @@
       Here are the  <strong>latest</strong> posts from our Blog.
     </h2>
     <div class="columns latest-blogs">
-      <div class="column" *ngFor="let item of items | async | slice:0:3;">
-        <div class="card" (click)="test(item)">
-          <div class="card-content">
-            <div class="content">
-              <p class="title">
-                {{item?.title}}
-              </p>
-              <p class="subtitle">
-                {{item?.date}}
-              </p>
-              <p>
-                {{item?.message | slice: 0:300}} ...
-              </p>
-              <button mat-button class="button is-link" (click)="openDialog()">Details</button>
-              <button class="like">
-                <fa-icon [icon]="faHeart" class="hearth"></fa-icon>
-                {{item.likes}} Likes
-              </button>
-              <button class="like">
-                <fa-icon [icon]="faShare"></fa-icon>
-                Share
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-blog-card [blogEntry]="item" *ngFor="let item of items | async | slice:0:3;">
+      </app-blog-card>
     </div>
   <div class="more-posts">
     <button class="button is-link" (click)="router.navigateByUrl('/blog')">More Posts</button>

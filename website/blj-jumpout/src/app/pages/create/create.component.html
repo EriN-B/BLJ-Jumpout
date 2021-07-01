@@ -3,19 +3,41 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-6-tablet is-6-desktop is-6-widescreen">
-          <div action="" class="box">
+          <div class="box">
             <div class="field">
-              <label for="" class="label">Titel</label>
-              <div class="control">
+              <label for="title" class="label">Titel</label>
+              <div id="title" class="control">
                 <input [(ngModel)]="title" type="text" class="input" required>
               </div>
             </div>
             <div class="field">
-              <label for="" class="label">Text</label>
-              <div class="control">
+              <label for="text" class="label">Text</label>
+              <div id="text" class="control">
                 <textarea [(ngModel)]="text" type="text" class="input" required> </textarea>
               </div>
             </div>
+
+
+
+            <div class="file">
+              <label class="file-label">
+                <input class="file-input" type="file" name="resume">
+                <span *ngIf="!file" class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a Image...
+                  </span>
+                </span>
+                <button *ngIf="file" class="button is-link" (click)="deleteImg()">Discard</button>
+              </label>
+            </div>
+
+
+
+
+
             <div class="field">
               <button class="button is-success" (click)="safeBlogPost()">
                 <fa-icon [icon]="faCheck" class="icon is-small is-left">
