@@ -21,11 +21,11 @@ export class CreateComponent implements OnInit {
   text: string;
 
   title: string;
-  public base64textString: string;
+  private base64textString: string;
 
   constructor(
-    public router: Router,
-    public blogService: BlogService
+    private router: Router,
+    private blogService: BlogService
   ) { }
 
   ngOnInit() {
@@ -36,28 +36,28 @@ export class CreateComponent implements OnInit {
     if(this.title && this.text.length >= 200){
       this.post.title = this.title;
       this.post.message = this.text;
-      this.post.img = this.base64textString
+      this.post.img = this.base64textString;
       this.blogService.safeBlogPost(this.post);
-      this.router.navigateByUrl('/blog')
+      this.router.navigateByUrl('/blog');
     }
   }
 
-  handleFileSelect(evt){
-    var files = evt.target.files;
-    var file = files[0];
+  handleFileSelect(evt) {
+    const files = evt.target.files;
+    const file = files[0];
 
     if (files && file) {
-      var reader = new FileReader();
+      const reader = new FileReader();
 
-      reader.onload =this._handleReaderLoaded.bind(this);
+      reader.onload = this._handleReaderLoaded.bind(this);
 
       reader.readAsBinaryString(file);
     }
   }
 
   _handleReaderLoaded(readerEvt) {
-    var binaryString = readerEvt.target.result;
-    this.base64textString= btoa(binaryString);
+    const binaryString = readerEvt.target.result;
+    this.base64textString = btoa(binaryString);
     console.log(btoa(binaryString));
   }
 
