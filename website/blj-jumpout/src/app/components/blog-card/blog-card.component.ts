@@ -25,10 +25,10 @@ export class BlogCardComponent implements OnInit {
   faShare = faShare;
 
   constructor(
-    private router: Router,
-    private matDialog: MatDialog,
-    private modalService: ModalService,
-    private blogService: BlogService,
+    public router: Router,
+    public matDialog: MatDialog,
+    public modalService: ModalService,
+    public blogService: BlogService,
   ) { }
 
   ngOnInit() {

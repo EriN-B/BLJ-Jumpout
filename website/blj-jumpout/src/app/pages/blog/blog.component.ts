@@ -25,12 +25,12 @@ export class BlogComponent implements OnInit {
   items: Observable<BlogPost[]>
 
   constructor(
-    private router: Router,
-    private afs: AngularFirestore,
-    private matDialog: MatDialog,
-    private blogService: BlogService,
-    private authService: AuthService,
-    private modalService: ModalService
+    public router: Router,
+    public afs: AngularFirestore,
+    public matDialog: MatDialog,
+    public blogService: BlogService,
+    public authService: AuthService,
+    public modalService: ModalService
   ) { }
 
   ngOnInit() {

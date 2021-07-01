@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   faPassport = faPassport;
 
   constructor(
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit() {

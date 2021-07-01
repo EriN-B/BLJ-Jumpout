@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "blj-weatherballoon"
+  },
+  "targets": {
+    "blj-weatherballoon": {
+      "hosting": {
+        "blj-jumpout": [
+          "blj-weatherballoon"
+        ]
+      }
+    }
   }
 }

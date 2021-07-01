@@ -9,7 +9,7 @@
           {{blogEntry?.date}}
         </p>
         <p>
-          {{blogEntry?.message | slice: 0:200}} ...
+          {{blogEntry?.message | slice: 0:300}} ...
         </p>
         <button mat-button class="button is-link" (click)="openDialog(blogEntry)">Details</button>
         <button class="like" (click)="likePost(blogEntry.id,blogEntry.likes)">
