@@ -33,7 +33,7 @@ export class CreateComponent implements OnInit {
 
   safeBlogPost(){
     // @ts-ignore
-    if(this.title && this.text.length >= 100){
+    if(this.title && this.text.length >= 200){
       this.post.title = this.title;
       this.post.message = this.text;
       this.post.img = this.base64textString
