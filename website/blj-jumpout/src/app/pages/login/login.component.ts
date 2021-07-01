@@ -12,7 +12,7 @@ import {User} from "../../types/user";
 })
 export class LoginComponent implements OnInit {
 
-  user: User = <User>{};
+  user: User;
 
   username: string = '';
 

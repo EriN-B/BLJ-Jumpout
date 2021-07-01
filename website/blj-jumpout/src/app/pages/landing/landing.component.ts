@@ -26,7 +26,7 @@ export class LandingComponent implements OnInit {
 
   loggedIn: boolean = false;
 
-    items: Promise<BlogPost[]>
+    items: Promise<BlogPost[]>;
 
   constructor(
     private router: Router,

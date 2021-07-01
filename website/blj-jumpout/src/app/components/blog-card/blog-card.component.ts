@@ -42,8 +42,8 @@ export class BlogCardComponent implements OnInit {
     });
   }
 
-  likePost(id,like){
-    this.liked = true
-    return this.blogService.likePost(id,like);
+  likePost(id, like) {
+    this.liked = true;
+    return this.blogService.likePost(id, like);
   }
 }
