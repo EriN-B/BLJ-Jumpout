@@ -19,9 +19,9 @@ export class ModalComponent implements OnInit {
   faHeart = faHeart;
 
   constructor(
-    private blogService: BlogService,
-    private route: ActivatedRoute,
-    private modalService: ModalService
+    public blogService: BlogService,
+    public route: ActivatedRoute,
+    public modalService: ModalService
   ) { }
 
   ngOnInit() {

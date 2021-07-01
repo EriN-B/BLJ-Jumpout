@@ -20,11 +20,11 @@ import {AuthService} from "./services/auth.service";
 export class AppComponent {
 
   constructor(
-    private router: Router,
-    private afs: AngularFirestore,
-    private matDialog: MatDialog,
-    private blogService: BlogService,
-    private authService: AuthService
+    public router: Router,
+    public afs: AngularFirestore,
+    public matDialog: MatDialog,
+    public blogService: BlogService,
+    public authService: AuthService
   ) {
     this.authService.User.subscribe(user =>{
       if(user !== null){

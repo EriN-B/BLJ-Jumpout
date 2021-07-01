@@ -21,11 +21,11 @@ export class CreateComponent implements OnInit {
   text: string;
 
   title: string;
-  private base64textString: string;
+  public base64textString: string;
 
   constructor(
-    private router: Router,
-    private blogService: BlogService
+    public router: Router,
+    public blogService: BlogService
   ) { }
 
   ngOnInit() {
