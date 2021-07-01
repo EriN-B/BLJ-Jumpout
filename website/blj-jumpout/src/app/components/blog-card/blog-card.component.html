@@ -1,0 +1,26 @@
+<div class="column">
+  <div class="card">
+    <div class="card-content">
+      <div class="content">
+        <p class="title">
+          {{blogEntry?.title}}
+        </p>
+        <p class="subtitle">
+          {{blogEntry?.date}}
+        </p>
+        <p>
+          {{blogEntry?.message | slice: 0:300}} ...
+        </p>
+        <button mat-button class="button is-link" (click)="openDialog(blogEntry)">Details</button>
+        <button class="like">
+          <fa-icon [icon]="faHeart" class="hearth"></fa-icon>
+          {{blogEntry.likes}} Likes
+        </button>
+        <button class="like">
+          <fa-icon [icon]="faShare"></fa-icon>
+          Share
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
