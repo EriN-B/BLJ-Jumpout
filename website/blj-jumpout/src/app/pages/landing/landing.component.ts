@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { Router } from "@angular/router";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {Observable} from "rxjs";
@@ -19,6 +19,9 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LandingComponent implements OnInit {
 
+
+  innerWidth:number;
+
   faHeart = faHeart;
   faCode = faCode;
   faShare = faShare;
@@ -35,6 +38,11 @@ export class LandingComponent implements OnInit {
     public blogService: BlogService,
     public authService: AuthService
   ) {
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 
   async ngOnInit() {

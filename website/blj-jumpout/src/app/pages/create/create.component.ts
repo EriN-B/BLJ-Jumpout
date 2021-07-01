@@ -24,8 +24,8 @@ export class CreateComponent implements OnInit {
   private base64textString: string;
 
   constructor(
-    private router: Router,
-    private blogService: BlogService
+    public router: Router,
+    public blogService: BlogService
   ) { }
 
   ngOnInit() {

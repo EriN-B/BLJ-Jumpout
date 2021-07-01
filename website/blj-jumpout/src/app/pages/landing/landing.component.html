@@ -1,17 +1,27 @@
 <section class="hero is-link is-large">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <p class="title">
-        Wetterballon
-      </p>
-      <p class="subtitle">
-        Abschlussprojekt BLJ 2021
-      </p>
-      <button class="button is-danger is-rounded">
-   <fa-icon [icon]="faRecordVinyl" class="icon is-small is-left"> </fa-icon>
-        <span>Participate Live</span>
-      </button>
+  <div class="hero-body has-text-centered">
+    <div class="content">
+      <div class="columns">
+        <div class="column" *ngIf="innerWidth > 1200">
+          <img class="cloud-2" src="../../../assets/pluto-84.png" alt="">
+        </div>
+        <div class="column">
+          <p class="title">
+            Wetterballon
+          </p>
+          <p class="subtitle">
+            Abschlussprojekt BLJ 2021
+          </p>
+          <button class="button is-danger is-rounded">
+            <fa-icon [icon]="faRecordVinyl" class="icon is-small is-left"> </fa-icon>
+            <span>Participate Live</span>
+          </button>
 
+        </div>
+        <div class="column" *ngIf="innerWidth > 1200">
+          <img class="cloud-1" src="../../../assets/pluto-94.png" alt="">
+        </div>
+      </div>
     </div>
   </div>
 </section>
