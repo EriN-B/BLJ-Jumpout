@@ -1,10 +1,32 @@
+
 <mat-dialog-content class="content">
-  <h1 class="has-text-link">{{blog.title}}</h1>
-  <p>{{blog.date}}</p>
-  <img *ngIf="blog.img" src="data:image/png;base64,{{blog.img}}">
-  <p class="text">{{blog.message}}</p>
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-four-fifths">
+      <div class="block">
+        <img class="image " *ngIf="blog.img" src="data:image/png;base64,{{blog.img}}" alt="bild des Tages">
+      </div>
+      <div class="block">
+        <h1 class="has-text-link">{{blog.title}}</h1>
+      </div>
+      <div class="block">
+        <p>{{blog.date}}</p>
+      </div>
+      <div class="block">
+        <p class="text">{{blog.message}}</p>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+
+
+
+
+
+
   <fa-icon [icon]="faHeart" class="hearth">
 
   </fa-icon>
   {{blog.likes}} Likes
 </mat-dialog-content>
+
