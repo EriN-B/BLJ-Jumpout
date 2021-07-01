@@ -22,7 +22,7 @@ export class CreateComponent implements OnInit {
 
   title: string;
 
-  file: File;
+  img: string = '';
 
   constructor(
     private router: Router,
@@ -39,6 +39,7 @@ export class CreateComponent implements OnInit {
       console.log(reader.result);
     };
     // @ts-ignore
+    /*
     if (this.title && this.text.length >= 300 && this.file) {
       this.post.title = this.title;
       this.post.message = this.text;
@@ -46,6 +47,8 @@ export class CreateComponent implements OnInit {
         await this.router.navigateByUrl('/blog');
       });
     }
+
+     */
   }
 
 
