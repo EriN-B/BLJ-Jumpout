@@ -25,7 +25,6 @@ import {MatTableModule} from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component'
 import { MatCardModule } from '@angular/material/card';
 import {environment} from "../environments/environment";
 
@@ -48,7 +47,6 @@ import { BlogCardComponent } from './components/blog-card/blog-card.component';
     LandingComponent,
     BlogComponent,
     LoginComponent,
-    RegisterComponent,
     ModalComponent,
     CreateComponent,
     NavbarComponent,

@@ -4,6 +4,7 @@ import {BlogPost} from "../../types/BlogPost";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {ModalService} from "../../services/modal.service";
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -14,6 +15,8 @@ import {ModalService} from "../../services/modal.service";
 export class ModalComponent implements OnInit {
 
   blog: BlogPost;
+
+  faHeart = faHeart;
 
   constructor(
     private blogService: BlogService,

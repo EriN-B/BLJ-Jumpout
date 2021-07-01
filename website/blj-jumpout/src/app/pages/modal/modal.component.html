@@ -1,5 +1,10 @@
-<div class="content">
+<mat-dialog-content class="content">
   <h1 class="has-text-link">{{blog.title}}</h1>
   <p>{{blog.date}}</p>
-  <p>{{blog.message}}</p>
-</div>
+  <img *ngIf="blog.img" src="data:image/png;base64,{{blog.img}}">
+  <p class="text">{{blog.message}}</p>
+  <fa-icon [icon]="faHeart" class="hearth">
+
+  </fa-icon>
+  {{blog.likes}} Likes
+</mat-dialog-content>

@@ -9,12 +9,16 @@
           {{blogEntry?.date}}
         </p>
         <p>
-          {{blogEntry?.message | slice: 0:300}} ...
+          {{blogEntry?.message | slice: 0:200}} ...
         </p>
         <button mat-button class="button is-link" (click)="openDialog(blogEntry)">Details</button>
-        <button class="like">
-          <fa-icon [icon]="faHeart" class="hearth"></fa-icon>
-          {{blogEntry.likes}} Likes
+        <button class="like" (click)="likePost(blogEntry.id,blogEntry.likes)">
+          <fa-icon [icon]="faHeart" class="hearth"
+                   [ngClass]="{
+            'positive' : liked,
+            'negative' : !liked
+         }"></fa-icon>
+          Like
         </button>
         <button class="like">
           <fa-icon [icon]="faShare"></fa-icon>

@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {BlogPost} from '../types/BlogPost';
 import {Router} from '@angular/router';
 import {readPackageTree} from '@angular/cli/utilities/package-tree';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 
 @Injectable({
@@ -24,16 +24,25 @@ export class BlogService {
 
     const dateToday = dd + '.' + mm + '.' + yyyy;
 
+    console.log(post.title)
+
     return this.afs.collection('Blogs').add({
       title: post.title,
       date: dateToday.toString(),
       message: post.message,
-      likes: 0
+      likes: 0,
+      img: post.img
     });
  }
 
- addLike() {
+ likePost(id,like) {
+    let likes = like+=1;
+    console.log(likes);
+    return this.afs.collection('Blogs').doc(id).update({
+      likes: likes
+    });
 
+    return likes;
  }
 
   public async getAllBlogEntries(): Promise<BlogPost[]> {

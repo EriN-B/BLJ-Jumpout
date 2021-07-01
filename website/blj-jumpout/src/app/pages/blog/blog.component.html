@@ -12,5 +12,6 @@
   <div class="columns is-multiline latest-blogs" >
     <div class="column is-one-third" *ngFor="let item of items | async">
       <app-blog-card [blogEntry]="item"></app-blog-card>
+    </div>
   </div>
 </div>

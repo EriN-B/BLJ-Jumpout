@@ -7,7 +7,7 @@ import {BlogPost} from "../../types/BlogPost";
 import {MatDialog} from '@angular/material/dialog';
 import {ModalComponent} from "../modal/modal.component";
 import {BlogService} from "../../services/blog.service";
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faCode } from '@fortawesome/free-solid-svg-icons';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from "../../services/auth.service";
@@ -20,12 +20,13 @@ import {AuthService} from "../../services/auth.service";
 export class LandingComponent implements OnInit {
 
   faHeart = faHeart;
+  faCode = faCode;
   faShare = faShare;
   faRecordVinyl = faRecordVinyl;
 
   loggedIn: boolean = false;
 
-    items: Observable<BlogPost[]>
+    items: Promise<BlogPost[]>
 
   constructor(
     private router: Router,
@@ -42,20 +43,15 @@ export class LandingComponent implements OnInit {
     await this.blogService.getAllBlogEntries();
   }
 
+  reload(){
+    this.items = this.blogService.getAllBlogEntries();
+  }
+
   openDialog() {
     const dialogRef = this.matDialog.open(ModalComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-  }
-
-  addBlogPost(){
-    this.afs.collection('Blogs').add({
-      title: "test 1",
-      date: "12.12.12",
-      message: "qweqewqwe",
-      likes: 0
-    })
   }
 
   test(item){

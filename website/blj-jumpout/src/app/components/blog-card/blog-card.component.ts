@@ -18,15 +18,17 @@ import {ModalService} from "../../services/modal.service";
 })
 export class BlogCardComponent implements OnInit {
 
+  liked: boolean ;
+
   @Input() blogEntry: BlogPost;
   faHeart = faHeart;
   faShare = faShare;
-  faRecordVinyl = faRecordVinyl;
 
   constructor(
     private router: Router,
     private matDialog: MatDialog,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private blogService: BlogService,
   ) { }
 
   ngOnInit() {
@@ -38,5 +40,10 @@ export class BlogCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  likePost(id,like){
+    this.liked = true
+    return this.blogService.likePost(id,like);
   }
 }

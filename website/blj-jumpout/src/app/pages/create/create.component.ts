@@ -13,7 +13,7 @@ import {count} from "rxjs/operators";
 })
 export class CreateComponent implements OnInit {
 
-  post: BlogPost;
+  post: BlogPost = <BlogPost>{};
 
   faCheck = faCheck;
   faTimes = faTimes;
@@ -21,8 +21,7 @@ export class CreateComponent implements OnInit {
   text: string;
 
   title: string;
-
-  file: File;
+  private base64textString: string;
 
   constructor(
     private router: Router,
@@ -32,25 +31,34 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  safeBlogPost() {
-    const reader = new FileReader();
-    reader.readAsDataURL(this.file);
-    reader.onload = () => {
-      console.log(reader.result);
-    };
+  safeBlogPost(){
     // @ts-ignore
-    if (this.title && this.text.length >= 300 && this.file) {
+    if(this.title && this.text.length >= 200){
       this.post.title = this.title;
       this.post.message = this.text;
-      this.blogService.safeBlogPost(this.post).then(async () => {
-        await this.router.navigateByUrl('/blog');
-      });
+      this.post.img = this.base64textString
+      this.blogService.safeBlogPost(this.post);
+      this.router.navigateByUrl('/blog')
     }
   }
 
+  handleFileSelect(evt){
+    var files = evt.target.files;
+    var file = files[0];
 
-  deleteImg() {
-    this.file = undefined;
+    if (files && file) {
+      var reader = new FileReader();
+
+      reader.onload =this._handleReaderLoaded.bind(this);
+
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    this.base64textString= btoa(binaryString);
+    console.log(btoa(binaryString));
   }
 
 }
