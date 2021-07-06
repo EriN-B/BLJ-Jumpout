@@ -12,11 +12,11 @@ import {User} from "../../types/user";
 })
 export class LoginComponent implements OnInit {
 
-  user: User;
+  user: User = <User>{};
 
-  username: string = '';
+  username: string;
 
-  password: string = '';
+  password: string;
 
   faPersonBooth = faPersonBooth;
   faPassport = faPassport;
@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
+  async login(){
     this.user.email = this.username;
     this.user.password = this.password;
-    this.authService.loginWithEmailAndPassword(this.user);
+    await this.authService.loginWithEmailAndPassword(this.user);
   }
 
 }

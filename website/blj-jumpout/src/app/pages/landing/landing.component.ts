@@ -38,6 +38,7 @@ export class LandingComponent implements OnInit {
     public blogService: BlogService,
     public authService: AuthService
   ) {
+    this.innerWidth = window.innerWidth;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -49,6 +50,7 @@ export class LandingComponent implements OnInit {
     // @ts-ignore
     this.items = this.blogService.getAllBlogEntries();
     await this.blogService.getAllBlogEntries();
+    this.innerWidth = window.innerWidth;
   }
 
   reload(){
