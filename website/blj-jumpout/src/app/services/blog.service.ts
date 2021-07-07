@@ -47,6 +47,16 @@ export class BlogService {
 
     return likes;
  }
+  dislikePost(id,like) {
+    let likes = like-=1;
+    console.log(likes);
+    return this.afs.collection('Blogs').doc(id).update({
+      likes: likes
+    });
+
+    return likes;
+  }
+
 
   public async getAllBlogEntries(): Promise<BlogPost[]> {
     const res = [];

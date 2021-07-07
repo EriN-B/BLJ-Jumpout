@@ -51,7 +51,13 @@ export class BlogCardComponent implements OnInit {
   }
 
   likePost(id, like) {
-    localStorage.setItem(id, '1');
-    return this.blogService.likePost(id, like);
+    if(localStorage.getItem(id) == '1'){
+      localStorage.setItem(id, '0');
+      return this.blogService.dislikePost(id,like);
+    }else{
+      localStorage.setItem(id, '1');
+      return this.blogService.likePost(id, like);
+    }
+    //
   }
 }
