@@ -25,7 +25,9 @@
          }"></fa-icon>
           Like
         </button>
-        <button class="like">
+        <button (click)="copyInputMessage()" class="like" matTooltip="Copy Link"
+                [matTooltipPosition]="position.value"
+                matTooltipHideDelay="100000">
           <fa-icon [icon]="faShare"></fa-icon>
           Share
         </button>

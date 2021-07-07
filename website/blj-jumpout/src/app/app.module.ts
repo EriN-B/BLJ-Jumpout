@@ -26,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LoginComponent } from './pages/login/login.component';
 import { MatCardModule } from '@angular/material/card';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {environment} from "../environments/environment";
 
 import { AngularFireModule } from "@angular/fire";
@@ -78,6 +79,7 @@ import { StatsComponent } from './pages/stats/stats.component';
     MatGridListModule,
     MatCardModule,
     FontAwesomeModule,
+    MatTooltipModule
   ],
   entryComponents: [
     ModalComponent

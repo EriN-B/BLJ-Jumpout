@@ -10,6 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {BlogService} from "../../services/blog.service";
 import {AuthService} from "../../services/auth.service";
 import {ModalService} from "../../services/modal.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-blog-card',
@@ -18,7 +19,13 @@ import {ModalService} from "../../services/modal.service";
 })
 export class BlogCardComponent implements OnInit {
 
+  // @ts-ignore
+  positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
+  position = new FormControl(this.positionOptions[0]);
+
   liked: boolean ;
+
+  tooltip = "wow";
 
   @Input() blogEntry: BlogPost;
   faHeart = faHeart;
@@ -42,6 +49,11 @@ export class BlogCardComponent implements OnInit {
       return false;
     }
   }
+
+  copyInputMessage(){
+    navigator.clipboard.writeText("https://blj-weatherballoon.web.app/blog").then().catch(e => console.error(e));
+  }
+
 
   openDialog(item) {
     this.modalService.setBlog(item);
