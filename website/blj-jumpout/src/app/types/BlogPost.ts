@@ -1,3 +1,7 @@
+import firebase from "firebase";
+import Timestamp = firebase.firestore.Timestamp;
+import firestore = firebase.firestore;
+
 export class BlogPost {
 
   constructor(id, title, date, message, likes, img) {
@@ -11,7 +15,7 @@ export class BlogPost {
 
   id: string;
   title: string;
-  date: string;
+  date: firestore.Timestamp;
   message: string;
   likes: number;
   img: string;

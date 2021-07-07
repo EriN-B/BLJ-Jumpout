@@ -10,7 +10,7 @@
 </section>
 <div class="box">
   <div class="columns is-multiline latest-blogs" >
-    <div class="column is-one-third" *ngFor="let item of items | async">
+    <div class="column is-one-third" *ngFor="let item of items">
       <app-blog-card [blogEntry]="item"></app-blog-card>
     </div>
   </div>

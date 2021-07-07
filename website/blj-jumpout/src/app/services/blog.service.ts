@@ -4,12 +4,17 @@ import {BlogPost} from '../types/BlogPost';
 import {Router} from '@angular/router';
 import {readPackageTree} from '@angular/cli/utilities/package-tree';
 import {Observable, Subscription} from 'rxjs';
+import firebase from "firebase";
+import firestore = firebase.firestore;
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
+
+  array = [];
 
   constructor(
     private afs: AngularFirestore,
@@ -24,11 +29,9 @@ export class BlogService {
 
     const dateToday = dd + '.' + mm + '.' + yyyy;
 
-    console.log(post.title)
-
     return this.afs.collection('Blogs').add({
       title: post.title,
-      date: dateToday.toString(),
+      date: firestore.Timestamp.now(),
       message: post.message,
       likes: 0,
       img: post.img
@@ -47,14 +50,14 @@ export class BlogService {
 
   public async getAllBlogEntries(): Promise<BlogPost[]> {
     const res = [];
-    await this.afs.collection('Blogs').get().subscribe((snapshot) => {
+    await this.afs.collection('Blogs', ref => ref.orderBy('date','desc')).get().subscribe((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const temp: BlogPost = new BlogPost(
             doc.id,
             // @ts-ignore
             doc.data().title,
             // @ts-ignore
-            doc.data().date,
+            new Date(Number(doc.data().date.seconds+"000")).toLocaleDateString("en-CH"),
             // @ts-ignore
             doc.data().message,
             // @ts-ignore
@@ -67,5 +70,10 @@ export class BlogService {
       }
     );
     return res;
+  }
+
+  data(){
+    this.afs.collection('Blogs', ref => ref.where('likes', '==', 'o'));
+
   }
 }

@@ -1,4 +1,4 @@
-<section class="hero is-link is-large">
+<section class="hero is-link is-medium" xmlns:https="http://www.w3.org/1999/xhtml">
   <div class="hero-body has-text-centered">
     <div class="content">
       <div class="columns">
@@ -12,11 +12,6 @@
           <p class="subtitle">
             Abschlussprojekt BLJ 2021
           </p>
-          <button class="button is-danger is-rounded">
-            <fa-icon [icon]="faRecordVinyl" class="icon is-small is-left"> </fa-icon>
-            <span>Participate Live</span>
-          </button>
-
         </div>
         <div class="column" *ngIf="innerWidth > 1200">
           <img class="cloud-1" src="../../../assets/pluto-94.png" alt="">
@@ -30,10 +25,11 @@
     <h2 class="subtitle">
       Here are the  <strong>latest</strong> posts from our Blog.
     </h2>
-    <div class="columns latest-blogs">
-      <app-blog-card [blogEntry]="item" *ngFor="let item of items | async | slice:0:3;">
-      </app-blog-card>
+  <div class="columns is-multiline latest-blogs" >
+    <div class="column is-one-third" *ngFor="let item of items | async | slice: 0 : 3;">
+      <app-blog-card [blogEntry]="item"></app-blog-card>
     </div>
+  </div>
   <div class="more-posts">
     <button class="button is-link" (click)="router.navigateByUrl('/blog')">More Posts</button>
   </div>
@@ -42,16 +38,44 @@
       About the Project
     </p>
     <div class="box">
-      <h2>Projectidea</h2>
-      <p>In unserem Projekt im Basislehrjahr arbeiten wir an einem Wetterballon, den wir in die Stratosphäre steigen lassen werden. Auf der Webseite zeigen wir unsere ausgewerteten Messwerte, die wir während dem Flug aufzeichnen werden. Zudem wird während dem Projekt jeden Tag ein Blogeintrag erstellt, auf dem wir unseren Projektstand aufzeigen.
-        Auch werden wir hier unser Making Of Video und unser Video zu dem Flugtag hochladen.</p>
+      <h2 class="">Projectidea</h2>
+      <p class="text">Das Projekt Sputnik 2 ist ein Projekt, welches uns viel bedeutet. Es ist unser letztes Projekt, welches wir in der Super zeit im Basislehrjahr zusammen bewältigt werden. Die Idee ist es, dass wir ein sogenannten Wetterballon von Grund aus aufbauen und ihn dann steigen lassen. Während dem Flug sammeln mehrere verschiedene Sensoren Daten. Der Flug wird auch von Zwei Kameras aufgenommen und am Schluss zu einem Film zusammengeschnitten. Zusätzlich wird der Ballon per GPS die ganze Zeit über verfolgt. Das Ziel beim ganzen Projekt ist es, dass der Wetterballon in die Stratosphäre gelangt und wir ihm beim Landen wiederfinden per GPS-Signal. Zusätzlich sollen die gesammelten Daten ausgewertet, dokumentiert und auf der Webseite dargestellt werden.</p>
+      <h2 class="">Arbeitsverteilung</h2>
+      <h3 class="has-text-link">Website</h3>
+      <p class="">Erin Bachmann, Luzerner Kantonalbank </p>
+      <ul>
+        <li>Website Erstellen</li>
+        <li>Website betreuen</li>
+        <li>Managen der Blog-Einträge</li>
+        <li>Daten auswerten und aufbereiten</li>
+        <li>Statistiken erstellen</li>
+      </ul>
+      <h3 class="has-text-link">Hardware</h3>
+      <p class="">Marvin Purtschert, CALIDA</p>
+      <p class="">Darvin Windlin, MAXON</p>
+      <ul>
+        <li>Sonde bauen</li>
+        <li>Beschaffung von Bauteilen</li>
+        <li>Sonde Innentemperatur testen</li>
+        <li>Sonde Falltest durchführen</li>
+      </ul>
+      <h3 class="has-text-link">Technology</h3>
+      <p class="">Joshua Odermatt, CSS Versicherung</p>
+      <p class="">Moritz Wicki, CSS Versicherung</p>
+      <ul>
+        <li>Hardware beschaffen</li>
+        <li>Hardware testen</li>
+        <li>Software erstellen</li>
+        <li>GPS tracking</li>
+        <li>Software testen</li>
+      </ul>
     </div>
   </div>
 </section>
 <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      <fa-icon [icon]="faCode" class="icon is-small is-left"> </fa-icon>  with <fa-icon [icon]="faHeart" class="icon is-small is-left"> </fa-icon> by <a href="https://instagram.com/bachmannerin">Erin</a> and <a href="https://instagram.com/bachmannerin">Joshua</a>
+      <fa-icon [icon]="faCode" class="icon is-small is-left"> </fa-icon> by <a href="https://instagram.com/bachmannerin">Erin</a> and <a href="https://instagram.com/bachmannerin">Joshua</a>
     </p>
   </div>
 </footer>

@@ -1,22 +1,27 @@
 <div class="column">
-  <div class="card">
+  <div class="card is-fullheight">
+    <div class="card-image hover"  (click)="openDialog(blogEntry)">
+      <figure class="image is-4by3">
+        <img src="data:image/png;base64,{{blogEntry?.img}}" alt="Placeholder image">
+      </figure>
+    </div>
     <div class="card-content">
       <div class="content">
-        <p class="title">
+        <p class="title hover"  (click)="openDialog(blogEntry)">
           {{blogEntry?.title}}
         </p>
-        <p class="subtitle">
+        <p class="subtitle has-text-link hover"  (click)="openDialog(blogEntry)">
           {{blogEntry?.date}}
         </p>
-        <p>
+        <p class="text hover" (click)="openDialog(blogEntry)">
           {{blogEntry?.message | slice: 0:300}} ...
         </p>
         <button mat-button class="button is-link" (click)="openDialog(blogEntry)">Details</button>
         <button class="like" (click)="likePost(blogEntry.id,blogEntry.likes)">
           <fa-icon [icon]="faHeart" class="hearth"
                    [ngClass]="{
-            'positive' : liked,
-            'negative' : !liked
+            'positive' : checkLike(blogEntry),
+            'negative' : !checkLike(blogEntry)
          }"></fa-icon>
           Like
         </button>

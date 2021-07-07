@@ -1,6 +1,6 @@
-<section class="hero is-link is-large">
+<section class="hero is-link is-large ">
   <div class="hero-head">
-    <nav class="navbar is-link">
+    <nav class="navbar is-link is-fixed-top has-background-link">
       <div class="container is-link">
         <div class="navbar-brand">
           <a class="navbar-item" (click)="router.navigateByUrl('/landing')">
@@ -14,9 +14,6 @@
             </a>
             <a class="navbar-item" (click)="router.navigateByUrl('/blog')">
               Blog
-            </a>
-            <a class="navbar-item" href="#about">
-              About
             </a>
             <span class="navbar-item">
               <a *ngIf="loggedIn" class="button is-info is-inverted" (click)="router.navigateByUrl('blog/create')">

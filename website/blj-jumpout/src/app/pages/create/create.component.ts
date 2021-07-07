@@ -5,6 +5,8 @@ import {BlogService} from "../../services/blog.service";
 import {Observable} from "rxjs";
 import {BlogPost} from "../../types/BlogPost";
 import {count} from "rxjs/operators";
+import firebase from "firebase";
+import TIMESTAMP = firebase.database.ServerValue.TIMESTAMP;
 
 @Component({
   selector: 'app-create',

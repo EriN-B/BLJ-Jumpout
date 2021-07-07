@@ -32,18 +32,26 @@ export class BlogCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+  }
+
+  checkLike(item){
+    if(localStorage.getItem(item.id) == '1'){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   openDialog(item) {
     this.modalService.setBlog(item);
     const dialogRef = this.matDialog.open(ModalComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
   likePost(id, like) {
-    this.liked = true;
+    localStorage.setItem(id, '1');
     return this.blogService.likePost(id, like);
   }
 }

@@ -38,7 +38,7 @@ import { CreateComponent } from './pages/create/create.component';
 import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
-
+import { StatsComponent } from './pages/stats/stats.component';
 
 
 @NgModule({
@@ -50,7 +50,8 @@ import { BlogCardComponent } from './components/blog-card/blog-card.component';
     ModalComponent,
     CreateComponent,
     NavbarComponent,
-    BlogCardComponent
+    BlogCardComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,7 @@ import { BlogCardComponent } from './components/blog-card/blog-card.component';
     MatDialogModule,
     MatGridListModule,
     MatCardModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   entryComponents: [
     ModalComponent

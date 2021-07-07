@@ -23,6 +23,7 @@ export class BlogComponent implements OnInit {
   faShare = faShare;
 
   items: Observable<BlogPost[]>
+  item2 = [];
 
   constructor(
     public router: Router,
@@ -33,9 +34,9 @@ export class BlogComponent implements OnInit {
     public modalService: ModalService
   ) { }
 
-  ngOnInit() {
+ async ngOnInit() {
     // @ts-ignore
-    this.items = this.blogService.getAllBlogEntries();
+    this.items = await this.blogService.getAllBlogEntries();
   }
 
   openDialog(item) {
