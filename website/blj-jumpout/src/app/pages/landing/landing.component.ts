@@ -10,7 +10,9 @@ import {BlogService} from "../../services/blog.service";
 import { faHeart, faCode } from '@fortawesome/free-solid-svg-icons';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
+import { faVideo } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from "../../services/auth.service";
+import {VideoComponent} from "../modal/video/video.component";
 
 @Component({
   selector: 'app-landing',
@@ -23,6 +25,7 @@ export class LandingComponent implements OnInit {
   innerWidth:number;
 
   faHeart = faHeart;
+  faVideo = faVideo;
   faCode = faCode;
   faShare = faShare;
   faRecordVinyl = faRecordVinyl;
@@ -66,5 +69,12 @@ export class LandingComponent implements OnInit {
 
   test(item){
    this.blogService.safeBlogPost(item);
+  }
+
+  videoDialog(){
+    const dialogRef = this.matDialog.open(VideoComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

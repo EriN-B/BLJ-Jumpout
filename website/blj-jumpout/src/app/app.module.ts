@@ -40,6 +40,7 @@ import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
 import { StatsComponent } from './pages/stats/stats.component';
+import { VideoComponent } from './pages/modal/video/video.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { StatsComponent } from './pages/stats/stats.component';
     CreateComponent,
     NavbarComponent,
     BlogCardComponent,
-    StatsComponent
+    StatsComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
@@ -82,14 +84,17 @@ import { StatsComponent } from './pages/stats/stats.component';
     MatTooltipModule
   ],
   entryComponents: [
-    ModalComponent
+    ModalComponent,
+    VideoComponent
   ],
   exports: [
-    ModalComponent
+    ModalComponent,
+    VideoComponent
   ],
   providers: [
     ModalComponent,
-    AngularFireAuthGuard
+    AngularFireAuthGuard,
+    VideoComponent
   ],
   bootstrap: [AppComponent]
 })

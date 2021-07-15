@@ -12,6 +12,12 @@
           <p class="subtitle">
             Abschlussprojekt BLJ 2021
           </p>
+          <button class="button is-danger" (click)="videoDialog()">
+            <span class="icon">
+              <fa-icon [icon]="faVideo"> </fa-icon>
+            </span>
+            <span>Video vom Flug</span>
+          </button>
         </div>
         <div class="column" *ngIf="innerWidth > 1200">
           <img class="cloud-1" src="../../../assets/pluto-94.png" alt="">
