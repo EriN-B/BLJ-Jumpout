@@ -1,4 +1,37 @@
 canvas{
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 30px;
+}
+
+
+
+.chart-container {
+  height: 400px;
+}
+
+
+@media only screen and (max-width: 1500px) {
+  .chart-container {
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .chart-container {
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .chart-container {
+    height: 200px;
+  }
+}
+
+
+@media only screen and (max-width: 800px) {
+  .chart-container {
+    height: 150px;
+  }
 }
