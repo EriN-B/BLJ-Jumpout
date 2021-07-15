@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as data from '../../../assets/data.json';
 import {
   Chart, registerables
 } from 'chart.js';
@@ -12,77 +13,52 @@ Chart.register(...registerables);
 })
 export class StatsComponent implements OnInit {
 
-  bar_canvas;
-  bar_ctx;
+  jsonData = data;
 
-  line_canvas;
-  line_ctx;
+  time_height_canvas;
+  time_heiht_ctx;
 
-  radar_canvas;
-  radar_ctx;
+  time_temp_canvas;
+  time_temp_ctx;
 
-  bubble_canvas;
-  bubble_ctx;
+  time_humidity_canvas;
+  time_humidity_ctx;
+
+  time_pressure_canvas;
+  time_pressure_ctx;
+
 
   constructor() { }
 
   ngOnInit() {
-    this.bar_canvas = document.getElementById("bar");
-    this.bar_ctx = this.bar_canvas.getContext('2d');
 
-    this.line_canvas = document.getElementById("line");
-    this.line_ctx = this.line_canvas.getContext('2d');
+    this.cleanDataSet();
 
-    this.radar_canvas = document.getElementById("radar");
-    this.radar_ctx = this.radar_canvas.getContext('2d');
+    console.log(this.jsonData);
 
-    this.bubble_canvas = document.getElementById("bubble");
-    this.bubble_ctx = this.bubble_canvas.getContext('2d');
+    this.time_height_canvas = document.getElementById('time_height');
+    this.time_heiht_ctx = this.time_height_canvas.getContext('2d');
+
+    this.time_temp_canvas = document.getElementById('time_temp');
+    this.time_temp_ctx = this.time_temp_canvas.getContext('2d');
+
+    this.time_humidity_canvas = document.getElementById('time_humidity');
+    this.time_humidity_ctx = this.time_humidity_canvas.getContext('2d');
+
+    this.time_pressure_canvas = document.getElementById('time_pressure');
+    this.time_pressure_ctx = this.time_pressure_canvas.getContext('2d');
+
+
 
     // @ts-ignore
-    let myChart = new Chart(this.bar_ctx  , {
-      type: 'bar',
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-    let line = new Chart(this.line_ctx  , {
+
+    const timeTemp = new Chart(this.time_temp_ctx  , {
       type: 'line',
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: this.getLabels(),
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Themeratur Innen',
+          data: this.getTimeTempDataInside(),
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -100,25 +76,41 @@ export class StatsComponent implements OnInit {
             'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
-        }]
+        },
+        {
+          label: 'Themperatur Aussen',
+          data: this.getTimeTempDataOutside(),
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }],
       },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
+      options: this.getOptions()
     });
-    let radar = new Chart(this.radar_ctx  , {
-      type: 'radar',
+
+
+
+    const timehumidity = new Chart(this.time_humidity_ctx  , {
+      type: 'line',
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: this.getLabels(),
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Luftfeuchtigkeit',
+          data: this.getTimeHumidityData(),
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -136,25 +128,20 @@ export class StatsComponent implements OnInit {
             'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
-        }]
+        }],
       },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
+      options: this.getOptions()
     });
-    let bubble = new Chart(this.bubble_ctx  , {
-      type: 'bubble',
+
+
+
+    const timeHeight = new Chart(this.time_heiht_ctx  , {
+      type: 'line',
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: this.getLabels(),
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Höhe (MüM)',
+          data: this.getTimeHeightData(),
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -172,17 +159,143 @@ export class StatsComponent implements OnInit {
             'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
-        }]
+        }],
       },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
+      options: this.getOptions()
+    });
+
+
+
+
+    const timePressure = new Chart(this.time_pressure_ctx  , {
+      type: 'line',
+      data: {
+        labels: this.getLabels(),
+        datasets: [{
+          label: 'Druck',
+          data: this.getTimePressureData(),
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }],
+      },
+      options: this.getOptions()
+    });
+
+  }
+
+
+
+
+
+
+
+  getOptions(): any {
+    return {
+      responsive: true,
+        elements: {
+      point: {
+        radius: 0
+      }
+    },
+      tooltips: {
+        callbacks: {
+          label(tooltipItem) {
+            return tooltipItem.yLabel;
+          }
         }
+      },
+      scales: {
+        x: {
+          grid: {
+            display: false
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        },
+
+      }
+    };
+    }
+
+  cleanDataSet() {
+    this.jsonData.default.forEach((val, index) => {
+      if (val.longitude === 'NA' || val.latitude === 'NA') {
+        this.jsonData.default.splice(index, 1);
       }
     });
+  }
+
+
+  getTimeHeightData() {
+    const data = [];
+    for (const elem of this.jsonData.default) {
+      data.push(elem.altitude);
+    }
+    return data;
+  }
+
+  getTimeTempDataInside() {
+    const data = [];
+    for (const elem of this.jsonData.default) {
+      data.push(elem.tempInside);
+    }
+    return data;
+  }
+
+  getTimeTempDataOutside() {
+    const data = [];
+    for (const elem of this.jsonData.default) {
+      data.push(elem.tempOutside);
+    }
+    return data;
+  }
+
+
+  getTimeHumidityData() {
+    const data = [];
+    for (const elem of this.jsonData.default) {
+      data.push(elem.humidity);
+    }
+    return data;
+  }
+
+  getTimePressureData() {
+    const data = [];
+    for (const elem of this.jsonData.default) {
+      data.push(elem.pressure);
+    }
+    return data;
+  }
+
+  getLabels() {
+    const start = this.jsonData.default[0].timeStamp;
+    const labels = [];
+
+    for (const elem of this.jsonData.default) {
+      const labelVal = elem.timeStamp - start;
+      labels.push('');
+    }
+    return labels;
   }
 }
