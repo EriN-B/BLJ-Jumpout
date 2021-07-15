@@ -33,7 +33,7 @@ export class BlogService {
       title: post.title,
       date: firestore.Timestamp.now(),
       message: post.message,
-      likes: 0,
+      likes: 1,
       img: post.img
     });
  }
